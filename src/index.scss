@@ -1,0 +1,106 @@
+* {
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+}
+
+body {
+	margin: 0;
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+		'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+		sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+div.App {
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-template-rows: 1fr;
+	justify-items: center;
+	align-items: center;
+	width: 100vw;
+	height: 100vh;
+	background-color: lightgray;
+
+	div.container {
+		height: min-content;
+		background-color: #0c0a81;
+		box-shadow: -4px -4px 7px 2px rgba(0, 0, 0, 0.116);
+		display: grid;
+		grid-template-columns: min-content;
+		grid-template-rows: min-content min-content;
+		justify-items: center;
+		padding: 2rem;
+		border-radius: 8px;
+		gap: 1.3em;
+		transform: scale(1.2);
+		border-bottom: 5px solid #2e2bce;
+		border-right: 5px solid #2e2bce;
+
+		div.visor {
+			display: flex;
+			justify-content: flex-end;
+			align-items: center;
+			width: 100%;
+			padding: 6px 0.6rem 0 0.6rem;
+			font-size: 1.6rem;
+			background-color: #fff;
+			border-left: inset 2px solid #fff;
+			color: #222;
+			font-weight: bold;
+			min-height: 48px;
+			box-shadow: inset -2px -2px 8px 1px rgba(51, 51, 51, 0.548);
+			position: relative;
+			word-wrap: break-word;
+			word-break: break-all;
+			text-transform: uppercase;
+			
+			&::after {
+				content: "";
+				position: absolute;
+				left: -1px;
+				top: -1px;
+				right: -0.8px;
+				bottom: -0.5px;
+				border-left: 6px solid #090770;
+				border-top: 6px solid #090770;
+			}
+		}
+		
+		div.keyboard {
+			display: grid;
+			grid-template-columns: 1fr 1fr 1fr 1fr;
+			grid-auto-rows: min-content;
+			gap: 1.1em;
+			
+			$base-color: #1b18dd;
+			$shadow: "";
+			
+			@for $i from 1 through 3{			
+			  $shadow: $shadow + "#{$i}px #{$i}px 0px 2px " + darken($base-color,$i*5) + ",";			
+			}
+			$shadow : str-slice($shadow,0,str-length($shadow)-1);
+			
+			div.key {
+				appearance: none;
+				border:none;
+				background: $base-color;
+				box-shadow: unquote($shadow);
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				width: 42px;
+				height: 42px;
+				text-align: center;
+				font-size: 1.3rem;
+				background: #110eac;
+				font-weight: bold;
+				color: #fff;
+				border-radius: 4px;
+				text-transform: uppercase;
+				cursor: pointer;
+			}	
+		}
+	}
+}
